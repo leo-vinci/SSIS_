@@ -1,0 +1,1892 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/16/2023 2:20:31 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-914G48E"
+  DTS:CreatorName="DESKTOP-914G48E\a"
+  DTS:DTSID="{B940210A-BD97-4062-923B-85502CEA918E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5209.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="130"
+  DTS:VersionGUID="{CECD2193-92DB-435C-9662-9C4A6D8FD102}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Cache Connection Manager]"
+      DTS:CreationName="CACHE"
+      DTS:Description="Cache file for Jan Sheet"
+      DTS:DTSID="{F8A51EC7-5113-41AC-8A02-4A6E6FFE6E77}"
+      DTS:ObjectName="Cache Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:UseFile="True"
+          DTS:ConnectionString="D:\ThakralOne\SSIS\Cache File\JanCache.caw">
+          <DTS:CacheColumns>
+            <DTS:CacheColumn
+              DTS:DataType="130"
+              DTS:Length="255"
+              DTS:IndexPosition="1"
+              DTS:ObjectName="Name"
+              DTS:DTSID="{20042EEC-C6FA-4396-8901-14A680225E0D}"
+              DTS:CreationName="" />
+            <DTS:CacheColumn
+              DTS:DataType="133"
+              DTS:IndexPosition="2"
+              DTS:ObjectName="Date"
+              DTS:DTSID="{C2EB6164-C8EF-4FCB-AB8F-FCC1B4E74D78}"
+              DTS:CreationName="" />
+            <DTS:CacheColumn
+              DTS:DataType="130"
+              DTS:Length="255"
+              DTS:ObjectName="Day"
+              DTS:DTSID="{FE9206ED-FA06-4C79-8792-66E231607A79}"
+              DTS:CreationName="" />
+            <DTS:CacheColumn
+              DTS:DataType="134"
+              DTS:ObjectName="InTime"
+              DTS:DTSID="{9FCE8569-A853-4040-A73C-F290C584EB70}"
+              DTS:CreationName="" />
+            <DTS:CacheColumn
+              DTS:DataType="130"
+              DTS:Length="255"
+              DTS:ObjectName="InRemarks"
+              DTS:DTSID="{F37DEEAB-798F-40F5-8666-3C8CCE82C0F9}"
+              DTS:CreationName="" />
+            <DTS:CacheColumn
+              DTS:DataType="134"
+              DTS:ObjectName="OutTime"
+              DTS:DTSID="{3B9ED176-7D07-424B-A3AF-EC0CE9EB812D}"
+              DTS:CreationName="" />
+            <DTS:CacheColumn
+              DTS:DataType="130"
+              DTS:Length="255"
+              DTS:ObjectName="OutRemarks"
+              DTS:DTSID="{F0C33EF5-46EA-474E-8A0D-816446F03178}"
+              DTS:CreationName="" />
+          </DTS:CacheColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DatabaseConnection]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E531314C-4A18-4236-9E9E-CBA63853AB56}"
+      DTS:ObjectName="DatabaseConnection">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=RajeshKSah;Initial Catalog=testDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package-{E531314C-4A18-4236-9E9E-CBA63853AB56}DatabaseConnection;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{A44C1C03-E205-41D7-903F-C17BF9FBC349}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\ThakralOne\SSIS\Test CSV File\Attendance Sheet January-2022.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=NO&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3C857D90-DE92-4B39-9E19-3DC95A82CF8A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CheckIfAlreadyExists">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{69930D4E-EC74-4C63-9C8B-3338751970ED}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CountRows">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9DDC71D8-5C67-4B9C-9B28-74149CA7D2AB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="File_Path">
+      <DTS:VariableValue
+        DTS:DataType="8">D:\ThakralOne\Dataset\Attendance\attendancesheet2022\Attendance Sheet April-2022.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Storing Data in Cache"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{DD3CC1B1-7CFD-4608-80AB-75FD41A3353C}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Storing Data in Cache"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Storing Data in Cache\Cache Transform"
+              componentClassID="Microsoft.Cache"
+              contactInfo="Cache Transform;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Writes data to a cache (a .caw file) with the Cache Connection Manager. Reuse the cache between multiple Lookup transforms to reduce database load. Share the cache to reduce memory usage. Note: cache data is stored in clear text and not recommended for sensitive data."
+              name="Cache Transform"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Storing Data in Cache\Cache Transform.Connections[CacheConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Cache Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Cache Connection Manager]"
+                  description="The connection used to access the cache."
+                  name="CacheConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Storing Data in Cache\Cache Transform.Inputs[Cache Input]"
+                  hasSideEffects="true"
+                  name="Cache Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Storing Data in Cache\Cache Transform.Inputs[Cache Input].Columns[NAME]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NAME"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[NAME]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The cache column associated with the input column."
+                          name="CacheColumnName">Name</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Storing Data in Cache\Cache Transform.Inputs[Cache Input].Columns[DATE]"
+                      cachedDataType="dbDate"
+                      cachedName="DATE"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[DATE]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The cache column associated with the input column."
+                          name="CacheColumnName">Date</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Storing Data in Cache\Cache Transform.Inputs[Cache Input].Columns[DAY]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="DAY"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[DAY]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The cache column associated with the input column."
+                          name="CacheColumnName">Day</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Storing Data in Cache\Cache Transform.Inputs[Cache Input].Columns[IN TIME]"
+                      cachedDataType="dbTime"
+                      cachedName="IN TIME"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[IN TIME]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The cache column associated with the input column."
+                          name="CacheColumnName">InTime</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Storing Data in Cache\Cache Transform.Inputs[Cache Input].Columns[IN REMARKS]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="IN REMARKS"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[IN REMARKS]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The cache column associated with the input column."
+                          name="CacheColumnName">InRemarks</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Storing Data in Cache\Cache Transform.Inputs[Cache Input].Columns[OUT TIME]"
+                      cachedDataType="dbTime"
+                      cachedName="OUT TIME"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[OUT TIME]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The cache column associated with the input column."
+                          name="CacheColumnName">OutTime</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Storing Data in Cache\Cache Transform.Inputs[Cache Input].Columns[OUT REMARKS]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="OUT REMARKS"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[OUT REMARKS]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The cache column associated with the input column."
+                          name="CacheColumnName">OutRemarks</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Storing Data in Cache\Cache Transform.Outputs[Cache Output]"
+                  name="Cache Output"
+                  synchronousInputId="Package\Storing Data in Cache\Cache Transform.Inputs[Cache Input]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Storing Data in Cache\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[CDC_Staging_attendance]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Storing Data in Cache\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DatabaseConnection]"
+                  connectionManagerRefId="Package.ConnectionManagers[DatabaseConnection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[NAME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NAME]"
+                      length="255"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[NAME]"
+                      name="NAME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[DATE]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DATE]"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[DATE]"
+                      name="DATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[DAY]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DAY]"
+                      length="255"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[DAY]"
+                      name="DAY"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[IN TIME]"
+                      dataType="dbTime"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IN TIME]"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[IN TIME]"
+                      name="IN TIME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[IN REMARKS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IN REMARKS]"
+                      length="255"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[IN REMARKS]"
+                      name="IN REMARKS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[OUT TIME]"
+                      dataType="dbTime"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OUT TIME]"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[OUT TIME]"
+                      name="OUT TIME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[OUT REMARKS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OUT REMARKS]"
+                      length="255"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].Columns[OUT REMARKS]"
+                      name="OUT REMARKS"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NAME]"
+                      dataType="wstr"
+                      length="255"
+                      name="NAME" />
+                    <externalMetadataColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DATE]"
+                      dataType="dbDate"
+                      name="DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DAY]"
+                      dataType="wstr"
+                      length="255"
+                      name="DAY" />
+                    <externalMetadataColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IN TIME]"
+                      dataType="dbTime2"
+                      name="IN TIME"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IN REMARKS]"
+                      dataType="wstr"
+                      length="255"
+                      name="IN REMARKS" />
+                    <externalMetadataColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OUT TIME]"
+                      dataType="dbTime2"
+                      name="OUT TIME"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OUT REMARKS]"
+                      dataType="wstr"
+                      length="255"
+                      name="OUT REMARKS" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NAME]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NAME]"
+                      name="NAME" />
+                    <outputColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DATE]"
+                      dataType="dbDate"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DATE]"
+                      name="DATE" />
+                    <outputColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DAY]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DAY]"
+                      name="DAY" />
+                    <outputColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IN TIME]"
+                      dataType="dbTime2"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IN TIME]"
+                      name="IN TIME"
+                      scale="7" />
+                    <outputColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IN REMARKS]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IN REMARKS]"
+                      name="IN REMARKS" />
+                    <outputColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OUT TIME]"
+                      dataType="dbTime2"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OUT TIME]"
+                      name="OUT TIME"
+                      scale="7" />
+                    <outputColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OUT REMARKS]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OUT REMARKS]"
+                      name="OUT REMARKS" />
+                    <outputColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Storing Data in Cache.Paths[OLE DB Source Output]"
+              endId="Package\Storing Data in Cache\Cache Transform.Inputs[Cache Input]"
+              name="OLE DB Source Output"
+              startId="Package\Storing Data in Cache\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\view changes and update to database accordingly"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{fff0d195-add1-4dc4-b8ab-fc1643f15e57}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="view changes and update to database accordingly"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\view changes and update to database accordingly\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\view changes and update to database accordingly\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Conditional Split.Inputs[Conditional Split Input].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Name"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Conditional Split.Inputs[Conditional Split Input].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Date]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Conditional Split.Inputs[Conditional Split Input].Columns[Day]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Day"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Day]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Conditional Split.Inputs[Conditional Split Input].Columns[LookupName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="LookupName"
+                      lineageId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupName]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Conditional Split.Inputs[Conditional Split Input].Columns[LookupDate]"
+                      cachedDataType="dbDate"
+                      cachedName="LookupDate"
+                      lineageId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupDate]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Conditional Split.Inputs[Conditional Split Input].Columns[LookupDay]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="LookupDay"
+                      lineageId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupDay]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Conditional Split.Inputs[Conditional Split Input].Columns[InTime]"
+                      cachedDataType="dbTime"
+                      cachedName="InTime"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[InTime]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Conditional Split.Inputs[Conditional Split Input].Columns[InRemarks]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="InRemarks"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[InRemarks]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Conditional Split.Inputs[Conditional Split Input].Columns[OutTime]"
+                      cachedDataType="dbTime"
+                      cachedName="OutTime"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[OutTime]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Conditional Split.Inputs[Conditional Split Input].Columns[OutRemarks]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="OutRemarks"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[OutRemarks]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Conditional Split.Inputs[Conditional Split Input].Columns[LookupInTime]"
+                      cachedDataType="dbTime"
+                      cachedName="LookupInTime"
+                      lineageId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupInTime]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Conditional Split.Inputs[Conditional Split Input].Columns[LookupInRemarks]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="LookupInRemarks"
+                      lineageId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupInRemarks]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Conditional Split.Inputs[Conditional Split Input].Columns[LookupOutTime]"
+                      cachedDataType="dbTime"
+                      cachedName="LookupOutTime"
+                      lineageId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupOutTime]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Conditional Split.Inputs[Conditional Split Input].Columns[LookupOutRemarks]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="LookupOutRemarks"
+                      lineageId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupOutRemarks]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\view changes and update to database accordingly\Conditional Split.Outputs[Change]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Change"
+                  synchronousInputId="Package\view changes and update to database accordingly\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="IgnoreFailure">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">([REPLACENULL](#{Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Date]}," ") == [REPLACENULL](#{Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupDate]}," ") &amp;&amp; [REPLACENULL](#{Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Name]}," ") == [REPLACENULL](#{Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupName]}," ")) &amp;&amp; ([REPLACENULL](#{Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Day]}," ") != [REPLACENULL](#{Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupDay]}," ") || [REPLACENULL](#{Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[InTime]}," ") != [REPLACENULL](#{Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupInTime]}," ") || [REPLACENULL](#{Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[InRemarks]}," ") != [REPLACENULL](#{Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupInRemarks]}," ") || [REPLACENULL](#{Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[OutTime]}," ") != [REPLACENULL](#{Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupOutTime]}," ") || [REPLACENULL](#{Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[OutRemarks]}," ") != [REPLACENULL](#{Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupOutRemarks]}," "))</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(REPLACENULL(Date," ") == REPLACENULL(LookupDate," ") &amp;&amp; REPLACENULL(Name," ") == REPLACENULL(LookupName," ")) &amp;&amp; (REPLACENULL(Day," ") != REPLACENULL(LookupDay," ") || REPLACENULL(InTime," ") != REPLACENULL(LookupInTime," ") || REPLACENULL(InRemarks," ") != REPLACENULL(LookupInRemarks," ") || REPLACENULL(OutTime," ") != REPLACENULL(LookupOutTime," ") || REPLACENULL(OutRemarks," ") != REPLACENULL(LookupOutRemarks," "))</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\view changes and update to database accordingly\Conditional Split.Outputs[No Change]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="No Change"
+                  synchronousInputId="Package\view changes and update to database accordingly\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\view changes and update to database accordingly\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\view changes and update to database accordingly\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\view changes and update to database accordingly\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\view changes and update to database accordingly\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\view changes and update to database accordingly\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [ThakralOne$B4:H]
+where f1 is not null</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\view changes and update to database accordingly\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].ExternalColumns[F1]"
+                      length="255"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].ExternalColumns[F2]"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Date]"
+                      name="Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Day]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].ExternalColumns[F3]"
+                      length="255"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Day]"
+                      name="Day"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[InTime]"
+                      dataType="dbTime"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].ExternalColumns[F4]"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[InTime]"
+                      name="InTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[InRemarks]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].ExternalColumns[F5]"
+                      length="255"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[InRemarks]"
+                      name="InRemarks"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[OutTime]"
+                      dataType="dbTime"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].ExternalColumns[F6]"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[OutTime]"
+                      name="OutTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[OutRemarks]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].ExternalColumns[F7]"
+                      length="255"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[OutRemarks]"
+                      name="OutRemarks"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].ExternalColumns[F1]"
+                      dataType="wstr"
+                      length="255"
+                      name="F1" />
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].ExternalColumns[F2]"
+                      dataType="date"
+                      name="F2" />
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].ExternalColumns[F3]"
+                      dataType="wstr"
+                      length="255"
+                      name="F3" />
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].ExternalColumns[F4]"
+                      dataType="date"
+                      name="F4" />
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].ExternalColumns[F5]"
+                      dataType="wstr"
+                      length="255"
+                      name="F5" />
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].ExternalColumns[F6]"
+                      dataType="date"
+                      name="F6" />
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].ExternalColumns[F7]"
+                      dataType="wstr"
+                      length="255"
+                      name="F7" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Error Output].Columns[F1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Error Output].Columns[F1]"
+                      name="F1" />
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Error Output].Columns[F2]"
+                      dataType="date"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Error Output].Columns[F2]"
+                      name="F2" />
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Error Output].Columns[F3]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Error Output].Columns[F3]"
+                      name="F3" />
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Error Output].Columns[F4]"
+                      dataType="date"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Error Output].Columns[F4]"
+                      name="F4" />
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Error Output].Columns[F5]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Error Output].Columns[F5]"
+                      name="F5" />
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Error Output].Columns[F6]"
+                      dataType="date"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Error Output].Columns[F6]"
+                      name="F6" />
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Error Output].Columns[F7]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Error Output].Columns[F7]"
+                      name="F7" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\view changes and update to database accordingly\Insert"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Insert"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">INSERT INTO [dbo].[CDC_Staging_attendance]
+VALUES  (?,?,?,?,?,?,?)
+
+</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\view changes and update to database accordingly\Insert.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DatabaseConnection]"
+                  connectionManagerRefId="Package.ConnectionManagers[DatabaseConnection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Date]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].Columns[Day]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Day"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Day]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].Columns[InTime]"
+                      cachedDataType="dbTime"
+                      cachedName="InTime"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[InTime]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].Columns[InRemarks]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="InRemarks"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[InRemarks]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].Columns[OutTime]"
+                      cachedDataType="dbTime"
+                      cachedName="OutTime"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[OutTime]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].Columns[OutRemarks]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="OutRemarks"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[OutRemarks]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="10"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="wstr"
+                      length="16"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="wstr"
+                      length="16"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_6">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\view changes and update to database accordingly\Insert.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\view changes and update to database accordingly\Insert.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Insert.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\view changes and update to database accordingly\Insert.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Insert.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\view changes and update to database accordingly\Insert.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\view changes and update to database accordingly\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from () [refTable]
+where [refTable].[Name] = ? and [refTable].[Date] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Name" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Date" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Day" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="InTime" dataType="DT_DBTIME" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="InRemarks" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OutTime" dataType="DT_DBTIME" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OutRemarks" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Name]};#{Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Date]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\view changes and update to database accordingly\Lookup.Connections[CacheConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Cache Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Cache Connection Manager]"
+                  description="Connection manager used to access lookup data."
+                  name="CacheConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\view changes and update to database accordingly\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Lookup.Inputs[Lookup Input].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Name"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Name]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Name</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Lookup.Inputs[Lookup Input].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Date]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Date</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\view changes and update to database accordingly\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="255"
+                      lineageId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupName]"
+                      name="LookupName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Name</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupDate]"
+                      name="LookupDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Date</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupDay]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="255"
+                      lineageId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupDay]"
+                      name="LookupDay"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Day</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupInTime]"
+                      dataType="dbTime"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupInTime]"
+                      name="LookupInTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">InTime</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupInRemarks]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="255"
+                      lineageId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupInRemarks]"
+                      name="LookupInRemarks"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">InRemarks</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupOutTime]"
+                      dataType="dbTime"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupOutTime]"
+                      name="LookupOutTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">OutTime</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupOutRemarks]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="255"
+                      lineageId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output].Columns[LookupOutRemarks]"
+                      name="LookupOutRemarks"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">OutRemarks</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\view changes and update to database accordingly\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\view changes and update to database accordingly\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\view changes and update to database accordingly\Update"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Update"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">update CDC_Staging_attendance
+set [DAY] = ?,[IN TIME] = ?,[IN REMARKS] = ?,[OUT TIME] = ?,[OUT REMARKS]=?
+where [NAME] = ? and [DATE] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\view changes and update to database accordingly\Update.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DatabaseConnection]"
+                  connectionManagerRefId="Package.ConnectionManagers[DatabaseConnection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].Columns[Day]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Day"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Day]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].Columns[InTime]"
+                      cachedDataType="dbTime"
+                      cachedName="InTime"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[InTime]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].Columns[InRemarks]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="InRemarks"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[InRemarks]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].Columns[OutTime]"
+                      cachedDataType="dbTime"
+                      cachedName="OutTime"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[OutTime]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].Columns[OutRemarks]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="OutRemarks"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[OutRemarks]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      externalMetadataColumnId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      lineageId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output].Columns[Date]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="dbTime2"
+                      name="Param_1"
+                      scale="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="dbTime2"
+                      name="Param_3"
+                      scale="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      dataType="dbDate"
+                      name="Param_6">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\view changes and update to database accordingly\Update.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\view changes and update to database accordingly\Update.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Update.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\view changes and update to database accordingly\Update.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\view changes and update to database accordingly\Update.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\view changes and update to database accordingly\Update.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\view changes and update to database accordingly.Paths[Change]"
+              endId="Package\view changes and update to database accordingly\Update.Inputs[OLE DB Command Input]"
+              name="Change"
+              startId="Package\view changes and update to database accordingly\Conditional Split.Outputs[Change]" />
+            <path
+              refId="Package\view changes and update to database accordingly.Paths[Excel Source Output]"
+              endId="Package\view changes and update to database accordingly\Lookup.Inputs[Lookup Input]"
+              name="Excel Source Output"
+              startId="Package\view changes and update to database accordingly\Excel Source.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\view changes and update to database accordingly.Paths[Lookup Match Output]"
+              endId="Package\view changes and update to database accordingly\Conditional Split.Inputs[Conditional Split Input]"
+              name="Lookup Match Output"
+              startId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\view changes and update to database accordingly.Paths[Lookup No Match Output]"
+              endId="Package\view changes and update to database accordingly\Insert.Inputs[OLE DB Command Input]"
+              name="Lookup No Match Output"
+              startId="Package\view changes and update to database accordingly\Lookup.Outputs[Lookup No Match Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{0F688A46-1B14-4324-8F9F-F26006BFC56D}"
+      DTS:From="Package\Storing Data in Cache"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\view changes and update to database accordingly" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="180,41.6"
+          Id="Package\Storing Data in Cache"
+          TopLeft="294.16665059411,236.599998354714" />
+        <NodeLayout
+          Size="308.8,41.6"
+          Id="Package\view changes and update to database accordingly"
+          TopLeft="233.333320584563,367.466664111349" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="385.949985589337,278.199998354714">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,89.2666657566359"
+              Start="0,0"
+              End="0,81.7666657566359">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,81.7666657566359" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Storing Data in Cache">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="158.4,41.6"
+          Id="Package\Storing Data in Cache\Cache Transform"
+          TopLeft="287.999995708466,269.999995976687" />
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\Storing Data in Cache\OLE DB Source"
+          TopLeft="289.999995678663,93.9999985992908" />
+        <EdgeLayout
+          Id="Package\Storing Data in Cache.Paths[OLE DB Source Output]"
+          TopLeft="366.599995693564,135.599998599291">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,134.399997377396"
+              Start="0,0"
+              End="0,126.899997377396">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,126.899997377396" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Storing Data in Cache\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\view changes and update to database accordingly">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="112,41.6"
+          Id="Package\view changes and update to database accordingly\Update"
+          TopLeft="393.076894569856,364.14871539092" />
+        <NodeLayout
+          Size="104.8,41.6"
+          Id="Package\view changes and update to database accordingly\Insert"
+          TopLeft="263.205114282731,267.73846037967" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\view changes and update to database accordingly\Lookup"
+          TopLeft="405.435874837587,157.287178789566" />
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\view changes and update to database accordingly\Conditional Split"
+          TopLeft="537.692299680068,266.153842187845" />
+        <NodeLayout
+          Size="140,41.6"
+          Id="Package\view changes and update to database accordingly\Excel Source"
+          TopLeft="384.666650934351,24.1333373561174" />
+        <EdgeLayout
+          Id="Package\view changes and update to database accordingly.Paths[Lookup No Match Output]"
+          TopLeft="444.369208170921,198.887178789566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-128.764093888189,68.8512815901045"
+              Start="0,0"
+              End="-128.764093888189,61.3512815901045">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.1182856284063" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.1182856284063"
+                    Point2="0,28.1182856284063"
+                    Point3="-4,28.1182856284063" />
+                  <mssgle:LineSegment
+                    End="-124.764093888189,28.1182856284063" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-124.764093888189,28.1182856284063"
+                    Point2="-128.764093888189,28.1182856284063"
+                    Point3="-128.764093888189,32.1182856284063" />
+                  <mssgle:LineSegment
+                    End="-128.764093888189,61.3512815901045" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-120.188433662845,33.1182856284063,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\view changes and update to database accordingly.Paths[Lookup Match Output]"
+          TopLeft="479.302541504254,198.887178789566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="135.189758175814,67.2666633982792"
+              Start="0,0"
+              End="135.189758175814,59.7666633982792">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.4711408563602" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.4711408563602"
+                    Point2="0,27.4711408563602"
+                    Point3="4,27.4711408563602" />
+                  <mssgle:LineSegment
+                    End="131.189758175814,27.4711408563602" />
+                  <mssgle:CubicBezierSegment
+                    Point1="131.189758175814,27.4711408563602"
+                    Point2="135.189758175814,27.4711408563602"
+                    Point3="135.189758175814,31.4711408563602" />
+                  <mssgle:LineSegment
+                    End="135.189758175814,59.7666633982792" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="19.4034923691569,32.4711408563602,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\view changes and update to database accordingly.Paths[Excel Source Output]"
+          TopLeft="458.251262885969,65.7333373561174">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,91.5538414334483"
+              Start="0,0"
+              End="0,84.0538414334483">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,84.0538414334483" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\view changes and update to database accordingly.Paths[Change]"
+          TopLeft="614.492299680068,307.753842187845">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-165.415405110211,56.3948732030751"
+              Start="0,0"
+              End="-165.415405110211,48.8948732030751">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.1974366015375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.1974366015375"
+                    Point2="0,28.1974366015375"
+                    Point3="-4,28.1974366015375" />
+                  <mssgle:LineSegment
+                    End="-161.415405110211,28.1974366015375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-161.415405110211,28.1974366015375"
+                    Point2="-165.415405110211,28.1974366015375"
+                    Point3="-165.415405110211,32.1974366015375" />
+                  <mssgle:LineSegment
+                    End="-165.415405110211,48.8948732030751" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-100.021569742606,33.1974366015375,34.627734375,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\view changes and update to database accordingly\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
